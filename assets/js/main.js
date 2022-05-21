@@ -121,7 +121,8 @@ function addProductToCart(title, price, productImg){
   
   for (var i = 0; i<cartItemsNames.length; i++){
     if (cartItemsNames[i].innerText == title){
-      alert("You have already added this item to your cart")
+      alert(`You have already add this item to your cart.
+You can modify the quantity in your cart section`)
       return
     }
     
@@ -142,14 +143,14 @@ function addProductToCart(title, price, productImg){
 
   cartShopBox.innerHTML = cartBoxContent
   cartItems.append(cartShopBox)
-  cartShopBox.getElementsByClassName('cart-remove')[0].addEventListener('click', removeCartItem)
+  cartShopBox.getElementsByClassName('remove-cart')[0].addEventListener('click', removeCartItem)
   cartShopBox.getElementsByClassName('cart-quantity')[0].addEventListener('change', quantityChanged)
   updatetotal()
 }                   
  
 //Update total
 function updatetotal(){
-  var cartContent = getElementsByClassName('cart-content')[0]
+  var cartContent = document.getElementsByClassName('cart-content')[0]
   var cartBoxes = cartContent.getElementsByClassName('cart-box')
   var total = 0
 
@@ -161,10 +162,11 @@ function updatetotal(){
     var quantity = quantityElement.value
 
     total = total + price * quantity
-  
+    console.log(quantityElement,price, total)
+  }
     //For too much cents values
     total = Math.round(total * 100) / 100
 
     document.getElementsByClassName('total-price')[0].innerText = "$" + total
-  }
+  
 }
